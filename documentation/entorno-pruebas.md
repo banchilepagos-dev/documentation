@@ -30,7 +30,7 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 - N: No autenticado
 
 
-<h1 class="icos-visa">VISA</h1>
+<h3 class="icos-visa">VISA</h3>
 
 | Número              | Comportamiento                                                                              |
 |---------------------|---------------------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 | 4532034637206853    | Deja la transacción en procesamiento manual y si se procesa queda en estado rechazado         |
 | 4666666666666669    | Se tarda 180 segundos en responder y queda en estado aprobado  
 
-## Mastercard
+<h3 class="icos-master-card"> Mastercard </h3>
 | Número              | Comportamiento                                                        |
 |---------------------|-----------------------------------------------------------------------|
 | 5367680000000005    | Aprueba                                                               |
@@ -70,20 +70,3 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 | 5180300000000039    | Rechaza 3DS-N                                                         |
 | 5180300000000047    | Deja la transacción en estado pendiente y se resuelve a aprobado 3DS-C |
 | 5180300000000054    | Deja la transacción en estado pendiente y se resuelve a rechazado 3DS-A|
-
-
-## Códigos postales disponibles para prueba de AVS
-**Para realizar un proceso exitoso usa 55555 como código postal**
-| ZIP Code | Comportamiento                                                                            |
-|----------|-------------------------------------------------------------------------------------------|
-| 55555    | Retorna transacción aprobada con AVS exitoso (Y)                                          |
-| 44444    | Retorna transacción aprobada con AVS fallido (A) y reembolsar la transacción              |
-| 33333    | Retorna transacción aprobada con AVS fallido (A) rechaza el reembolso, pero cuando se consulta el reembolso fue exitoso. |
-
-
-## OTP para casos de prueba
-
-**Para que el proceso de OTP sea exitoso en el proceso de validación de OTP de estos servicios, cualquier otro código es un rechazo**
-
-- 123456
-- 000000
