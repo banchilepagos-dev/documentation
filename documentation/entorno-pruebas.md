@@ -30,7 +30,7 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 - N: No autenticado
 
 
-<h3 class="icos-visa">VISA</h3>
+### <span class="icos-visa"></span>VISA
 
 | Número              | Comportamiento                                                                              |
 |---------------------|---------------------------------------------------------------------------------------------|
@@ -60,7 +60,7 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 | 4532034637206853    | Deja la transacción en procesamiento manual y si se procesa queda en estado rechazado         |
 | 4666666666666669    | Se tarda 180 segundos en responder y queda en estado aprobado  
 
-<h3 class="icos-master-card"> Mastercard </h3>
+### <span class="icos-master-card"></span> Mastercard
 | Número              | Comportamiento                                                        |
 |---------------------|-----------------------------------------------------------------------|
 | 5367680000000005    | Aprueba                                                               |
