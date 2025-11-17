@@ -30,7 +30,7 @@ Para las pruebas con 3DS en el comportamiento se describe su resultado
 - N: No autenticado
 
 
-### <span class="icos-visa"></span>VISA
+### <span class="icos-visa"></span> VISA
 
 | Número              | Comportamiento                                                                              |
 |---------------------|---------------------------------------------------------------------------------------------|
