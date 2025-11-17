@@ -1,0 +1,1343 @@
+---
+title: Sesión
+description: En esta página, nos sumergiremos en los diferentes puntos finales de la sesión que puede usar para administrar las sesiones de pago mediante programación.
+order: 1
+headingIds:
+  "Crear una sesión": "create-a-session"
+  "Consultar una sesión": "query-a-session"
+  "Cancelar una sesión": "cancel-a-session"
+---
+
+# Sesión
+
+Se identifica como sesión, a la experiencia visual con el que interactuan los usuarios para completar un pago.
+
+---
+
+## Crear una sesión
+
+<span class="http-badge post">POST</span> `/api/session`
+
+Este endpoint te permite crear una nueva sesión. En la sesión el usuario podrá completar un pago o suscripción.
+
+### Solicitud
+
+#### Crear Sesión simple
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+      "locale": "es_CO",
+      "auth": {
+        "login":"aabbccdd1234567890aabbccdd123456",
+        "tranKey":"ABC123example456trankey+789abc012def3456ABC=",
+        "nonce":"NjE0OWVkODgwYjNhNw==",
+        "seed":"2021-09-21T09:34:48-05:00"
+      },
+      "payment": {
+          "reference": "1122334455",
+          "description": "Prueba",
+          "amount": {
+            "currency": "USD",
+            "total": 100
+          }
+      },
+      "expiration": "2021-12-30T00:00:00-05:00",
+      "returnUrl": "https://dnetix.co/p2p/client",
+      "ipAddress": "127.0.0.1",
+      "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear Sesión de preautorización
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "type": "checkin",
+    "payment": {
+      "reference": "1122334455",
+      "description": "Prueba",
+      "amount": {
+        "currency": "USD",
+        "total": 100
+      }
+    },
+    "expiration": "2021-12-30T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con pago mixto
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "1122334455",
+      "description": "Prueba",
+      "amount": {
+        "currency": "USD",
+        "total": 100
+      },
+      "allowPartial": true
+    },
+    "expiration": "2021-12-30T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con impuestos
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Reference",
+      "amount": {
+        "currency": "USD",
+        "total": 500,
+        "taxes": [
+          {
+            "kind": "stateTax",
+            "amount": 16.13
+          },
+          {
+            "kind": "municipalTax",
+            "amount": 11.21
+          },
+          {
+            "kind": "reducedStateTax",
+            "amount": 10.21
+          }
+        ]
+      }
+    },
+    "expiration": "2021-12-30T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con dispersión
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Reference",
+      "amount": {
+        "currency": "USD",
+        "total": 500
+      },
+      "dispersion": [
+        {
+          "agreement": "1299",
+          "agreementType": "MERCHANT",
+          "amount": {
+            "currency": "USD",
+            "total": 200
+          }
+        },
+        {
+          "agreement": "",
+          "agreementType": "MERCHANT",
+          "amount": {
+            "currency": "USD",
+            "total": 300
+          }
+        }
+      ]
+    },
+    "expiration": "2021-12-30T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión suscripción
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "subscription": {
+      "reference": "331122",
+      "description": "Una suscripción de prueba"
+    },
+    "expiration": "2021-12-31T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con recurrencia
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Pago con recurrencia",
+      "amount": {
+        "currency": "USD",
+        "total": 100
+      },
+      "recurring": {
+        "periodicity": "D",
+        "interval": "1",
+        "nextPayment": "2021-12-30",
+        "maxPeriods": "12"
+      }
+    },
+    "expiration": "2022-12-15T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }
+```
+
+#### Crear sesión con modificadores
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Pago con modificadores",
+      "amount": {
+        "currency": "UYU",
+        "total": 2000
+      },
+      "modifiers": [
+        {
+          "type": "FEDERAL_GOVERNMENT",
+          "code": 17934,
+          "additional": {
+            "invoice": "112233"
+          }
+        }
+      ]
+    },
+    "expiration": "2022-12-15T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con detalles
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Reference",
+      "amount": {
+        "currency": "USD",
+        "total": 500,
+        "details": [
+          {
+            "kind": "tip",
+            "amount": 11
+          },
+          {
+            "kind": "subtotal",
+            "amount": 11
+          }
+        ]
+      }
+    },
+    "expiration": "2021-12-30T00:00:00-05:00",
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox"
+  }'
+```
+
+#### Crear sesión con pago y subscripción
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session \
+  -H "Content-Type: application/json" \
+  -d '{
+    "locale": "es_CO",
+    "auth": {
+      "login": "aabbccdd1234567890aabbccdd123456",
+      "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+      "nonce": "NjE0OWVkODgwYjNhNw==",
+      "seed": "2021-09-21T09:34:48-05:00"
+    },
+    "payer": {
+      "document": "1122334455",
+      "documentType": "CC",
+      "name": "John",
+      "surname": "Doe",
+      "company": "Evertec",
+      "email": "johndoe@app.com",
+      "mobile": "+5731111111111"
+    },
+    "payment": {
+      "reference": "12345",
+      "description": "Prueba de pago y subscripción",
+      "amount": {
+        "currency": "COP",
+        "total": 2000
+      },
+      "subscribe": true
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://checkout.redirection.test/session/1/a592098e22acc709ec7eb30fc0973060",
+        "displayOn": "none"
+      }
+    ],
+    "expiration": "2019-08-24T14:15:22Z",
+    "returnUrl": "https://commerce.test/return",
+    "cancelUrl": "https://commerce.test/cancel",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "skipResult": false,
+    "noBuyerFill": false
+  }'
+```
+
+### Respuesta
+
+#### 200 - Éxito
+
+```json
+{
+  "status": {
+    "status": "OK",
+    "reason": "PC",
+    "message": "La petición se ha procesado correctamente",
+    "date": "2021-11-30T15:08:27-05:00"
+  },
+  "requestId": 1,
+  "processUrl": "https://checkout-co.placetopay.com/session/1/cc9b8690b1f7228c78b759ce27d7e80a",
+}
+```
+
+#### 401 - No autorizado
+
+```json
+{
+  "status": {
+    "status": "FAILED",
+    "reason": 401,
+    "message": "Autenticación fallida 102",
+    "date": "2021-11-30T15:12:25-05:00"
+  },
+}
+```
+
+---
+
+## Consultar una sesión
+
+<span class="http-badge post">POST</span> `/api/session/:requestId`
+
+Este endpoint te permite obtener la información de la sesión, si en la sesión hay transacciones se muestra el detalle de las mismas.
+
+### Solicitud
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session/000000 \
+  -H "Content-Type: application/json" \
+  -d '{
+      "auth": {
+        "login": "aabbccdd1234567890aabbccdd123456",
+        "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+        "nonce": "NjE0OWVkODgwYjNhNw==",
+        "seed": "2021-09-21T09:34:48-05:00"
+      }
+    }'
+```
+
+### Respuesta
+
+#### 200 - APROBADO
+
+```json
+{
+  "requestId": 1,
+  "status": {
+    "status": "APPROVED",
+    "reason": "00",
+    "message": "La petición ha sido aprobada exitosamente",
+    "date": "2022-07-27T14:51:27-05:00"
+  },
+  "request": {
+    "locale": "es_CO",
+    "payer": {
+      "document": "1122334455",
+      "documentType": "CC",
+      "name": "John",
+      "surname": "Doe",
+      "company": "Evertec",
+      "email": "johndoe@app.com",
+      "mobile": "+5731111111111",
+      "address": {
+        "street": "123 Example Street, Sample City, ST 12345",
+        "city": "Medellín",
+        "state": "Poblado",
+        "postalCode": "55555",
+        "country": "CO",
+        "phone": "+573111111111"
+      }
+    },
+    "buyer": {
+      "document": "1122334455",
+      "documentType": "CC",
+      "name": "John",
+      "surname": "Doe",
+      "company": "Evertec",
+      "email": "johndoe@app.com",
+      "mobile": "+5731111111111",
+      "address": {
+        "street": "123 Example Street, Sample City, ST 12345",
+        "city": "Medellín",
+        "state": "Poblado",
+        "postalCode": "55555",
+        "country": "CO",
+        "phone": "+573111111111"
+      }
+    },
+    "payment": {
+      "reference": "12345",
+      "description": "Prueba de pago",
+      "amount": {
+        "currency": "COP",
+        "total": 2000,
+        "taxes": [
+          {
+            "kind": "valueAddedTax",
+            "amount": 1000,
+            "base": 0
+          }
+        ],
+        "details": [
+          {
+            "kind": "discount",
+            "amount": 1000
+          }
+        ]
+      },
+      "allowPartial": false,
+      "shipping": {
+        "document": "1122334455",
+        "documentType": "CC",
+        "name": "John",
+        "surname": "Doe",
+        "company": "Evertec",
+        "email": "johndoe@app.com",
+        "mobile": "+5731111111111",
+        "address": {
+          "street": "123 Example Street, Sample City, ST 12345",
+          "city": "Medellín",
+          "state": "Poblado",
+          "postalCode": "55555",
+          "country": "CO",
+          "phone": "+573111111111"
+        }
+      },
+      "items": [
+        {
+          "sku": "12345",
+          "name": "product_1",
+          "category": "physical",
+          "qty": "1",
+          "price": 1000,
+          "tax": 0
+        }
+      ],
+      "fields": [
+        {
+          "keyword": "_test_field_value_",
+          "value": "_test_field_",
+          "displayOn": "approved"
+        }
+      ],
+      "recurring": {
+        "periodicity": "D",
+        "interval": "1",
+        "nextPayment": "2019-08-24",
+        "maxPeriods": 1,
+        "dueDate ": "2019-09-24",
+        "notificationUrl ": "https://checkout.placetopay.com"
+      },
+      "subscribe": false,
+      "dispersion": [
+        {
+          "agreement": "1299",
+          "agreementType": "MERCHANT",
+          "amount": {
+            "currency": "USD",
+            "total": 200
+          }
+        }
+      ],
+      "modifiers": [
+        {
+          "type": "FEDERAL_GOVERNMENT",
+          "code": 17934,
+          "additional": {
+            "invoice": "123345"
+          }
+        }
+      ]
+    },
+    "subscription": {
+      "reference": "12345",
+      "description": "Ejemplo de descripción",
+      "fields": {
+        "keyword": "1111",
+        "value": "lastDigits",
+        "displayOn": "none"
+      }
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://checkout.redirection.test/session/1/a592098e22acc709ec7eb30fc0973060",
+        "displayOn": "none"
+      }
+    ],
+    "paymentMethod": "visa",
+    "expiration": "2019-08-24T14:15:22Z",
+    "returnUrl": "https://commerce.test/return",
+    "cancelUrl": "https://commerce.test/cancel",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "skipResult": false,
+    "noBuyerFill": false,
+    "type": "checkin"
+  },
+  "payment": [
+    {
+      "status": {
+        "status": "APPROVED",
+        "reason": "00",
+        "message": "La petición ha sido aprobada exitosamente",
+        "date": "2022-07-27T14:51:27-05:00"
+      },
+      "internalReference": 12345,
+      "reference": "12345",
+      "paymentMethod": "visa",
+      "paymentMethodName": "Visa",
+      "issuerName": "JPMORGAN CHASE BANK, N.A.",
+      "amount": {
+        "from": {
+          "currency ": "COP",
+          "total ": 10000
+        },
+        "to": {
+          "currency ": "COP",
+          "total ": 10000
+        },
+        "factor": 1
+      },
+      "receipt": "052617800175",
+      "franchise": "PS_VS",
+      "refunded": false,
+      "authorization": "965960",
+      "processorFields": [
+        {
+          "keyword": "1111",
+          "value": "lastDigits",
+          "displayOn": "none"
+        }
+      ],
+      "dispersion": null,
+      "agreement": null,
+      "agreementType": null,
+      "discount": {
+        "base": 3000,
+        "code": "17934",
+        "type": "FRANCHISE",
+        "amount": 1000
+      },
+      "subscription": null
+    }
+  ],
+  "subscription": {
+    "status": {
+      "status": "OK",
+      "reason": "00",
+      "message": "La petición ha sido aprobada exitosamente",
+      "date": "2022-07-27T14:51:27-05:00"
+    },
+    "type": "token",
+    "instrument": [
+      {
+        "keyword": "token",
+        "value": "a3bfc8e2afb9ac5583922eccd6d2061c1b0592b099f04e352a894f37ae51cf1a",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "subtoken",
+        "value": "8740257204881111",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "franchise",
+        "value": "visa",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "franchiseName",
+        "value": "Visa",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "issuerName",
+        "value": "JPMORGAN CHASE BANK, N.A.",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "lastDigits",
+        "value": "1111",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "validUntil",
+        "value": "2029-12-31",
+        "displayOn": "none"
+      },
+      {
+        "keyword": "installments",
+        "value": null,
+        "displayOn": "none"
+      }
+    ]
+  }
+}
+```
+
+#### 200 - PENDIENTE
+
+```json
+{
+  "requestId": 1,
+  "status": {
+    "status": "PENDING",
+    "reason": "PT",
+    "message": "La petición se encuentra pendiente",
+    "date": "2021-11-30T15:45:57-05:00"
+  },
+  "request": {
+    "locale": "es_CO",
+    "payer": {
+      "document": "1033332222",
+      "documentType": "CC",
+      "name": "Name",
+      "surname": "lastName",
+      "email": "dnetix1@app.com",
+      "mobile": "3111111111",
+      "address": {
+        "postalCode": "12345"
+      }
+    },
+    "payment": {
+      "reference": "1122334455",
+      "description": "Prueba",
+      "amount": {
+        "currency": "USD",
+        "total": 1000
+      },
+      "allowPartial": false,
+      "subscribe": false
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://test.placetopay.com/redirection/session/1/e0dfb6c7d6ab964b2377c825aef56a63",
+        "displayOn": "none"
+      }
+    ],
+    "returnUrl": "https://dnetix.co/p2p/client",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2021-12-30T00:00:00-05:00"
+  },
+  "payment": null,
+  "subscription": null
+}
+```
+
+#### 200 - RECHAZADO
+
+```json
+{
+  "requestId": 1,
+  "status": {
+    "status": "REJECTED",
+    "reason": "XN",
+    "message": "Se ha rechazado la petición",
+    "date": "2021-11-30T16:44:24-05:00"
+  },
+  "request": {
+    "locale": "es_CO",
+    "payer": {
+      "document": "1033332222",
+      "documentType": "CC",
+      "name": "Name",
+      "surname": "LastName",
+      "email": "dnetix@app.com",
+      "mobile": "31111111111",
+      "address": {
+        "postalCode": "12345"
+      }
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Reference",
+      "amount": {
+        "currency": "USD",
+        "total": 500
+      },
+      "allowPartial": false,
+      "subscribe": false,
+      "dispersion": [
+        {
+          "reference": "331122",
+          "description": "Reference",
+          "amount": {
+            "currency": "USD",
+            "total": 200
+          },
+          "allowPartial": false,
+          "subscribe": false,
+          "agreement": "26",
+          "agreementType": "AIRLINE"
+        },
+        {
+          "reference": "331122",
+          "description": "Reference",
+          "amount": {
+            "currency": "USD",
+            "total": 300
+          },
+          "allowPartial": false,
+          "subscribe": false,
+          "agreementType": "MERCHANT"
+        }
+      ]
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://test.placetopay.com/redirection/session/1/1dfbaf16c76c6ee83a63a956d704a9d1",
+        "displayOn": "none"
+      }
+    ],
+    "returnUrl": "https://redirection.test/home",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2021-12-30T00:00:00-05:00"
+  },
+  "payment": [
+    {
+      "status": {
+        "status": "REJECTED",
+        "reason": "65",
+        "message": "65",
+        "date": "2021-11-30T16:22:19-05:00"
+      },
+      "internalReference": 1,
+      "paymentMethod": "visa",
+      "paymentMethodName": "Visa",
+      "issuerName": "CAIXA D'ESTALVIS UNIO DE CAIXES DE MANLLEU, SABADE",
+      "amount": {
+        "from": {
+          "currency": "USD",
+          "total": 500
+        },
+        "to": {
+          "currency": "USD",
+          "total": 500
+        },
+        "factor": 1
+      },
+      "authorization": "000000",
+      "reference": "331122",
+      "franchise": "TS_VS",
+      "refunded": false,
+      "processorFields": [
+        {
+          "keyword": "totalAmount",
+          "value": 500,
+          "displayOn": "none"
+        },
+        {
+          "keyword": "lastDigits",
+          "value": "6853",
+          "displayOn": "none"
+        }
+      ],
+      "dispersion": [
+        {
+          "status": {
+            "status": "REJECTED",
+            "reason": "65",
+            "message": "65",
+            "date": "2021-11-30T16:34:17-05:00"
+          },
+          "internalReference": 2,
+          "amount": {
+            "from": {
+              "currency": "USD",
+              "total": 200
+            },
+            "to": {
+              "currency": "USD",
+              "total": 200
+            },
+            "factor": 1
+          },
+          "authorization": "000000",
+          "franchise": "TS_VS",
+          "refunded": false,
+          "agreement": 26,
+          "agreementType": "AIRLINE"
+        },
+        {
+          "status": {
+            "status": "REJECTED",
+            "reason": "?C",
+            "message": "Pago abortado por el usuario",
+            "date": "2021-11-30T16:34:17-05:00"
+          },
+          "internalReference": 3,
+          "amount": {
+            "from": {
+              "currency": "USD",
+              "total": 300
+            },
+            "to": {
+              "currency": "USD",
+              "total": 300
+            },
+            "factor": 1
+          },
+          "authorization": "000000",
+          "receipt": "000000",
+          "franchise": "ID_VS",
+          "refunded": false,
+          "agreementType": "MERCHANT"
+        }
+      ]
+    }
+  ],
+  "subscription": null
+}
+```
+
+#### 200 - EXPIRADO PARCIALMENTE
+
+```json
+{
+  "requestId": 1,
+  "status": {
+    "status": "PARTIAL_EXPIRED",
+    "reason": "PX",
+    "message": "La petición esta expirada o cancelada y se han realizado pagos",
+    "date": "2023-03-09T17:10:34-05:00"
+  },
+  "request": {
+    "locale": "es_CO",
+    "payer": {
+      "document": "111111111",
+      "documentType": "CC",
+      "name": "John",
+      "surname": "Doe",
+      "email": "user_email@example.com",
+      "mobile": "+573111111111"
+    },
+    "payment": {
+      "reference": "331122",
+      "description": "Reference",
+      "amount": {
+        "currency": "USD",
+        "total": 500
+      },
+      "allowPartial": false,
+      "subscribe": false,
+      "dispersion": [
+        {
+          "reference": "331122",
+          "description": "Reference",
+          "amount": {
+            "currency": "USD",
+            "total": 200
+          },
+          "allowPartial": false,
+          "subscribe": false,
+          "agreement": "111",
+          "agreementType": "MERCHANT"
+        },
+        {
+          "reference": "331122",
+          "description": "Reference",
+          "amount": {
+            "currency": "USD",
+            "total": 300
+          },
+          "allowPartial": false,
+          "subscribe": false,
+          "agreementType": "MERCHANT"
+        }
+      ]
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://checkout.redirection.test/session/750/20e2eb0d4681a916549e95ed49a11080",
+        "displayOn": "none"
+      }
+    ],
+    "returnUrl": "https://redirection.test/home",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2023-03-09T23:09:14.946Z"
+  },
+  "payment": [
+    {
+      "amount": {
+        "to": {
+          "total": 500,
+          "currency": "USD"
+        },
+        "from": {
+          "total": 500,
+          "currency": "USD"
+        },
+        "factor": 1
+      },
+      "status": {
+        "date": "2023-03-09T17:10:14-05:00",
+        "reason": "61",
+        "status": "APPROVED_PARTIAL",
+        "message": "Negada, Monto excede el máximo definido por la Entidad Financiera en el archivo de Tarjetahabientes"
+      },
+      "receipt": "110000857921",
+      "refunded": false,
+      "franchise": "EB_VS",
+      "reference": "331122",
+      "dispersion": [
+        {
+          "amount": {
+            "to": {
+              "total": 200,
+              "currency": "USD"
+            },
+            "from": {
+              "total": 200,
+              "currency": "USD"
+            },
+            "factor": 1
+          },
+          "status": {
+            "date": "2023-03-09T17:10:14-05:00",
+            "reason": "00",
+            "status": "APPROVED",
+            "message": "Aprobada"
+          },
+          "receipt": "110000857921",
+          "refunded": false,
+          "franchise": "EB_VS",
+          "agreementType": "MERCHANT",
+          "authorization": "614761",
+          "internalReference": 421692
+        },
+        {
+          "amount": {
+            "to": {
+              "total": 300,
+              "currency": "USD"
+            },
+            "from": {
+              "total": 300,
+              "currency": "USD"
+            },
+            "factor": 1
+          },
+          "status": {
+            "date": "2023-03-09T17:10:14-05:00",
+            "reason": "61",
+            "status": "REJECTED",
+            "message": "Negada, Monto excede el máximo definido por la Entidad Financiera en el archivo de Tarjetahabientes"
+          },
+          "receipt": "421693",
+          "refunded": false,
+          "franchise": "EB_VS",
+          "agreementType": "MERCHANT",
+          "authorization": "000000",
+          "internalReference": 421693
+        }
+      ],
+      "issuerName": "BANCO DE GUAYAQUIL, S.A.",
+      "authorization": "614761",
+      "paymentMethod": "visa",
+      "processorFields": [
+        {
+          "value": "4549106521651",
+          "keyword": "merchantCode",
+          "displayOn": "none"
+        },
+        {
+          "value": "19371021",
+          "keyword": "terminalNumber",
+          "displayOn": "none"
+        },
+        {
+          "value": "411076",
+          "keyword": "bin",
+          "displayOn": "none"
+        },
+        {
+          "value": 200,
+          "keyword": "totalAmount",
+          "displayOn": "none"
+        },
+        {
+          "value": "0057",
+          "keyword": "lastDigits",
+          "displayOn": "none"
+        },
+        {
+          "value": "eeacbe4f36c8f8117fc4d7ab47fa366f",
+          "keyword": "id",
+          "displayOn": "none"
+        },
+        {
+          "value": "61",
+          "keyword": "b24",
+          "displayOn": "none"
+        }
+      ],
+      "internalReference": 421691,
+      "paymentMethodName": "Visa"
+    }
+  ],
+  "subscription": null
+}
+```
+
+#### 200 - APROBADO PARCIALMENTE
+
+```json
+{
+  "requestId": 1,
+  "status": {
+    "status": "APPROVED_PARTIAL",
+    "reason": "P0",
+    "message": "La petición está parcialmente aprobada",
+    "date": "2023-03-09T17:29:13-05:00"
+  },
+  "request": {
+    "locale": "es_CO",
+    "payer": {
+      "document": "111111111",
+      "documentType": "CC",
+      "name": "Antonino",
+      "surname": "Pan y queso",
+      "email": "root13@app.com",
+      "mobile": "+573111111111"
+    },
+    "payment": {
+      "reference": "GAD_1675183488",
+      "description": "Pago GAD Municipal de Cuenca",
+      "amount": {
+        "currency": "COP",
+        "total": 10000
+      },
+      "allowPartial": true,
+      "subscribe": false
+    },
+    "fields": [
+      {
+        "keyword": "_processUrl_",
+        "value": "https://checkout.redirection.test/session/751/cfe5a789a27feca7fe211bd400db354d",
+        "displayOn": "none"
+      }
+    ],
+    "returnUrl": "https://mysite.com/response/32120",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2023-03-09T23:28:43.775Z"
+  },
+  "payment": [
+    {
+      "amount": {
+        "to": {
+          "total": 1.05,
+          "currency": "USD"
+        },
+        "from": {
+          "total": 5000,
+          "currency": "COP"
+        },
+        "factor": 0.00021
+      },
+      "status": {
+        "date": "2023-03-09T17:29:03-05:00",
+        "reason": "00",
+        "status": "APPROVED",
+        "message": "Aprobada"
+      },
+      "receipt": "110000288071",
+      "refunded": false,
+      "franchise": "EB_VS",
+      "reference": "GAD_1675183488",
+      "issuerName": "JPMORGAN CHASE BANK, N.A.",
+      "authorization": "614761",
+      "paymentMethod": "visa",
+      "processorFields": [
+        {
+          "value": "4549106521651",
+          "keyword": "merchantCode",
+          "displayOn": "none"
+        },
+        {
+          "value": "19371021",
+          "keyword": "terminalNumber",
+          "displayOn": "none"
+        },
+        {
+          "value": "411111",
+          "keyword": "bin",
+          "displayOn": "none"
+        },
+        {
+          "value": "1111",
+          "keyword": "lastDigits",
+          "displayOn": "none"
+        },
+        {
+          "value": "74a6ef63ea0d1fcc78f4c471b0ae7f3d",
+          "keyword": "id",
+          "displayOn": "none"
+        },
+        {
+          "value": "00",
+          "keyword": "b24",
+          "displayOn": "none"
+        }
+      ],
+      "internalReference": 421694,
+      "paymentMethodName": "Visa"
+    }
+  ],
+  "subscription": null
+}
+```
+
+#### 401 - No autorizado
+
+```json
+{
+  "status": {
+    "status": "FAILED",
+    "reason": 401,
+    "message": "Autenticación fallida 102",
+    "date": "2021-11-30T15:12:25-05:00"
+  },
+}
+```
+
+---
+
+## Cancelar una sesión
+
+<span class="http-badge post">POST</span> `/api/session/:requestId/cancel`
+
+Este endpoint te permite cancelar una sesión sin algún pago aprobado, o con una transacción de efectivo aún no pagada.
+
+### Solicitud
+
+```bash
+curl -X "POST" https://checkout-test.placetopay.com/api/session/000000/cancel \
+  -H "Content-Type: application/json" \
+  -d '{
+      "auth": {
+        "login": "aabbccdd1234567890aabbccdd123456",
+        "tranKey": "ABC123example456trankey+789abc012def3456ABC=",
+        "nonce": "NjE0OWVkODgwYjNhNw==",
+        "seed": "2021-09-21T09:34:48-05:00"
+      }
+    }'
+```
+
+### Respuesta
+
+#### 200 - APROBADO
+
+```json
+{
+  "status": {
+    "status": "OK",
+    "reason": "00",
+    "message": "La petición se ha procesado correctamente",
+    "date": "2025-07-11T14:05:44-05:00"
+  },
+  "session": {
+    "requestId": 28,
+    "status": {
+      "status": "REJECTED",
+      "reason": "MC",
+      "message": "La petición ha sido cancelada por el comercio",
+      "date": "2025-07-11T14:05:44-05:00"
+    },
+    "request": {
+      "locale": "es_CO",
+      "payer": {
+        "document": "118877455",
+        "documentType": "CC",
+        "name": "John",
+        "surname": "Doe",
+        "email": "Johny@Doe.com",
+        "mobile": "+573111111111"
+      },
+    "payment": {
+      "reference": "Ord: 1001/2023",
+      "description": "_pueba pagoEfectivo",
+      "amount": {
+        "currency": "USD",
+        "total": 20000
+      },
+      "allowPartial": false,
+      "subscribe": false,
+      "fields": [
+        {
+        "keyword": "_test_field_",
+        "value": "_test_field_value_",
+        "displayOn": "payment"
+        }
+      ]
+    },
+    "returnUrl": "https://mysite.com/response/32120",
+    "ipAddress": "127.0.0.1",
+    "userAgent": "PlacetoPay Sandbox",
+    "expiration": "2025-07-11T19:25:39.497Z"
+    },
+  "payment": null,
+  "subscription": null
+  }
+}
+```
+
+#### 404 - FALLIDO SESIÓN NO ENCONTRADA
+
+```json
+{
+  "status": {
+    "status": "FAILED",
+    "reason": "request_not_valid",
+    "message": "No existe la sesión que busca",
+    "date": "2025-07-11T14:06:31-05:00"
+  }
+}
+```
+
+#### 400 - FALLIDO ACCIÓN NO PERMITIDA
+
+```json
+{
+  "status": {
+    "status": "FAILED",
+    "reason": "action_not_allowed",
+    "message": "No se pueden cancelar sesiones que no están pendientes.",
+    "date": "2025-07-11T14:03:53-05:00"
+  }
+}
+```
+
+#### 404 - FALLIDO NO ENCONTRADO
+
+```json
+{
+  "status": {
+    "status": "FAILED",
+    "reason": "NA",
+    "message": "Pagina no encontrada",
+    "date": "2025-07-11T14:06:08-05:00"
+  }
+}
+```
