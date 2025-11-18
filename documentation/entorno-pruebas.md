@@ -20,4 +20,4 @@ Debes iniciar tu integración en nuestro ambiente de pruebas y cuando todo esté
 
 Estas tarjetas pueden ser usadas en el ambiente de pruebas de Placetopay para simular las diferentes respuestas en la integración.
 
-Ver más en [Gateway API - Tarjetas de prueba](/documentation/testing-card)
+Ver más en [Gateway API - Tarjetas de prueba](#documentation#testing-card)

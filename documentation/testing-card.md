@@ -1,5 +1,5 @@
 ---
-title: 'Testing Card'
+title: 'Tarjetas de prueba'
 description: 'Pruebas con tarjetas de crédito y débito en ambiente de desarrollo.'
 slug: 'testing-card'
 order: 5
