@@ -1,4 +1,11 @@
-
+---
+title: 'Woocommerce'
+description: 'Plugins de woocommerce'
+slug: 'plugins-componentes'
+order: 7
+---
+ 
+ 
  <img src="https://assets.bancochile.cl/uploads/000/089/189/f4fe06a6-f37b-49f9-9873-b58a90dcd02f/original/0.png" alt="Wordpress" class="">
 
 <div class="title-general">
