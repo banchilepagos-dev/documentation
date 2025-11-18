@@ -10,7 +10,7 @@ order: 7
 
 
 <div class="title-general">
-# Instrucciones para instalar y configurar WooCommerce Banchile Pagos
+<h1> Instrucciones para instalar y configurar WooCommerce Banchile Pagos </h1>
 </div>
 Para utilizar Banchile Pagos, es necesario contar con una cuenta activa.
 - Descarga nuestro plugin para integrarlo con la plataforma de WordPress.
