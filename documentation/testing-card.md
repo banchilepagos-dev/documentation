@@ -90,90 +90,96 @@ details {
 /* Dark mode styles */
 @media (prefers-color-scheme: dark) {
   details {
-    background-color: #1f2937;
+    background-color: rgba(31, 41, 55, 0.8);
     border-color: #374151;
   }
   
   details summary {
-    color: #f9fafb;
+    color: #ffffff;
   }
   
   details[open] summary {
-    border-bottom-color: #60a5fa;
+    border-bottom-color: #0033A0;
+    color: #ffffff;
   }
   
   .copyable-card:hover {
-    background-color: #374151;
+    background-color: rgba(55, 65, 81, 0.8);
   }
   
   .copyable-card:active {
-    background-color: #4b5563;
+    background-color: rgba(75, 85, 99, 0.8);
   }
   
   .card-table-container table {
-    color: #e5e7eb;
+    color: #ffffff;
   }
   
   .card-table-container th {
-    background-color: #374151;
+    background-color: rgba(55, 65, 81, 0.8);
     border-bottom-color: #4b5563;
+    color: #ffffff;
   }
   
   .card-table-container td {
     border-bottom-color: #374151;
+    color: #ffffff;
   }
   
   .card-table-container tr:hover {
-    background-color: #374151;
+    background-color: rgba(55, 65, 81, 0.6);
   }
   
   .card-table-container code {
-    background-color: #374151;
+    background-color: rgba(55, 65, 81, 0.8);
     color: #93c5fd;
   }
 }
 
 /* Manual dark mode class support (for frameworks like Tailwind) */
 .dark details {
-  background-color: #1f2937;
+  background-color: rgba(31, 41, 55, 0.8);
   border-color: #374151;
 }
 
 .dark details summary {
-  color: #f9fafb;
+  color: #ffffff;
 }
 
 .dark details[open] summary {
-  border-bottom-color: #60a5fa;
+  border-bottom-color: #0033A0;
+  color: #ffffff;
 }
 
 .dark .copyable-card:hover {
-  background-color: #374151;
+  background-color: rgba(55, 65, 81, 0.8);
 }
 
 .dark .copyable-card:active {
-  background-color: #4b5563;
+  background-color: rgba(75, 85, 99, 0.8);
 }
 
 .dark .card-table-container table {
-  color: #e5e7eb;
+  color: #ffffff;
 }
 
 .dark .card-table-container th {
-  background-color: #374151;
+  background-color: rgba(55, 65, 81, 0.8);
   border-bottom-color: #4b5563;
+  color: #ffffff;
 }
 
 .dark .card-table-container td {
   border-bottom-color: #374151;
+  color: #ffffff;
 }
 
 .dark .card-table-container tr:hover {
-  background-color: #374151;
+  background-color: rgba(55, 65, 81, 0.6);
 }
 
 .dark .card-table-container code {
-  background-color: #374151;
+  background-color: rgba(55, 65, 81, 0.8);
   color: #93c5fd;
 }
 
