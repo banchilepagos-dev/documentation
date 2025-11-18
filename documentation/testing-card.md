@@ -84,6 +84,97 @@ details {
   padding: 1rem;
   margin: 1.5rem 0;
   background-color: #f9fafb;
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Dark mode styles */
+@media (prefers-color-scheme: dark) {
+  details {
+    background-color: #1f2937;
+    border-color: #374151;
+  }
+  
+  details summary {
+    color: #f9fafb;
+  }
+  
+  details[open] summary {
+    border-bottom-color: #60a5fa;
+  }
+  
+  .copyable-card:hover {
+    background-color: #374151;
+  }
+  
+  .copyable-card:active {
+    background-color: #4b5563;
+  }
+  
+  .card-table-container table {
+    color: #e5e7eb;
+  }
+  
+  .card-table-container th {
+    background-color: #374151;
+    border-bottom-color: #4b5563;
+  }
+  
+  .card-table-container td {
+    border-bottom-color: #374151;
+  }
+  
+  .card-table-container tr:hover {
+    background-color: #374151;
+  }
+  
+  .card-table-container code {
+    background-color: #374151;
+    color: #93c5fd;
+  }
+}
+
+/* Manual dark mode class support (for frameworks like Tailwind) */
+.dark details {
+  background-color: #1f2937;
+  border-color: #374151;
+}
+
+.dark details summary {
+  color: #f9fafb;
+}
+
+.dark details[open] summary {
+  border-bottom-color: #60a5fa;
+}
+
+.dark .copyable-card:hover {
+  background-color: #374151;
+}
+
+.dark .copyable-card:active {
+  background-color: #4b5563;
+}
+
+.dark .card-table-container table {
+  color: #e5e7eb;
+}
+
+.dark .card-table-container th {
+  background-color: #374151;
+  border-bottom-color: #4b5563;
+}
+
+.dark .card-table-container td {
+  border-bottom-color: #374151;
+}
+
+.dark .card-table-container tr:hover {
+  background-color: #374151;
+}
+
+.dark .card-table-container code {
+  background-color: #374151;
+  color: #93c5fd;
 }
 
 details summary {
