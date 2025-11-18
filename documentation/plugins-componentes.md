@@ -94,9 +94,10 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
   margin: 2rem 0;
 }
 
+/* Estilos base para light mode (por defecto) */
 .plugin-card {
-  background-color: #1e293b;
-  border: 1px solid #334155;
+  background-color: #ffffff;
+  border: 1px solid #e2e8f0;
   border-radius: 12px;
   padding: 1.5rem;
   transition: all 0.3s ease;
@@ -108,7 +109,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 .plugin-card:hover {
   border-color: #0033A0;
   transform: translateY(-4px);
-  box-shadow: 0 8px 16px rgba(0, 51, 160, 0.2);
+  box-shadow: 0 8px 16px rgba(0, 51, 160, 0.15);
 }
 
 .plugin-header {
@@ -124,14 +125,14 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 }
 
 .plugin-card h3 {
-  color: #ffffff;
+  color: #1e293b;
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0;
 }
 
 .plugin-card p {
-  color: #94a3b8;
+  color: #64748b;
   font-size: 0.95rem;
   line-height: 1.6;
   margin: 0;
@@ -139,7 +140,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 }
 
 .plugin-link {
-  color: #0ea5e9;
+  color: #0033A0;
   text-decoration: none;
   font-weight: 500;
   display: inline-flex;
@@ -149,62 +150,63 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 }
 
 .plugin-link:hover {
-  color: #0033A0;
+  color: #0056d6;
+  text-decoration: underline;
 }
 
-/* Light mode */
-@media (prefers-color-scheme: light) {
+/* Dark mode automático con media query */
+@media (prefers-color-scheme: dark) {
   .plugin-card {
-    background-color: #ffffff;
-    border-color: #e2e8f0;
+    background-color: rgba(30, 41, 59, 0.9);
+    border-color: #475569;
   }
   
   .plugin-card:hover {
-    box-shadow: 0 8px 16px rgba(0, 51, 160, 0.1);
+    border-color: #60a5fa;
+    box-shadow: 0 8px 16px rgba(96, 165, 250, 0.3);
   }
   
   .plugin-card h3 {
-    color: #1e293b;
+    color: #f1f5f9;
   }
   
   .plugin-card p {
-    color: #64748b;
+    color: #cbd5e1;
+  }
+  
+  .plugin-link {
+    color: #60a5fa;
+  }
+  
+  .plugin-link:hover {
+    color: #93c5fd;
   }
 }
 
-/* Manual light mode class support */
-body:not(.dark) .plugin-card {
-  background-color: #ffffff;
-  border-color: #e2e8f0;
-}
-
-body:not(.dark) .plugin-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 51, 160, 0.1);
-}
-
-body:not(.dark) .plugin-card h3 {
-  color: #1e293b;
-}
-
-body:not(.dark) .plugin-card p {
-  color: #64748b;
-}
-
-/* Dark mode class support */
+/* Dark mode manual class support */
 .dark .plugin-card {
-  background-color: #1e293b;
-  border-color: #334155;
+  background-color: rgba(30, 41, 59, 0.9);
+  border-color: #475569;
 }
 
 .dark .plugin-card:hover {
-  box-shadow: 0 8px 16px rgba(0, 51, 160, 0.2);
+  border-color: #60a5fa;
+  box-shadow: 0 8px 16px rgba(96, 165, 250, 0.3);
 }
 
 .dark .plugin-card h3 {
-  color: #ffffff;
+  color: #f1f5f9;
 }
 
 .dark .plugin-card p {
-  color: #94a3b8;
+  color: #cbd5e1;
+}
+
+.dark .plugin-link {
+  color: #60a5fa;
+}
+
+.dark .plugin-link:hover {
+  color: #93c5fd;
 }
 </style>
