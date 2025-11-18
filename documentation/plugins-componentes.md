@@ -11,9 +11,6 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 
 
 
-## Plugins
----
-
 <div class="plugins-grid">
 
 <div class="plugin-card">
