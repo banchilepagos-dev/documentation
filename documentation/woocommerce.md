@@ -90,11 +90,15 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 - Ubicación tarea programada.
 
 
-
-
-
-
-
+<style>
+    .title-general{
+        text-align: center;
+        margin-top: 50px;
+    }
+    .border-img{
+        border-radius:12px;
+    }
+</style>
 
 
 

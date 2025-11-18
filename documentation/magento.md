@@ -77,11 +77,6 @@ En Magento podemos tener diferentes estados para una orden. A continuación se d
 
 
 
-
-
-
-
-
 <style>
     .title-general{
         text-align: center;
