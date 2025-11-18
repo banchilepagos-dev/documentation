@@ -4,92 +4,172 @@ description: 'Descripción general de Checkout y ciclo de vida de una sesión de
 slug: 'como-funciona-web-checkout'
 order: 1
 ---
-# **Cómo funciona Checkout**
+export const description =
+  'Conoce el protocolo de autenticación de Checkout API y cómo generar tu autenticación.';
+  
+# Autenticación
 
-Checkout te permite recibir pagos en línea haciendo una integración muy sencilla desde tu sitio o aplicación.
+Para interactuar con la API de Checkout debes autenticar tus peticiones, de esta forma identificamos y validamos la información para que tus operaciones sean seguras. La API utiliza *Web Services Security UsernameToken Profile 1.1*. {{ className: 'lead' }}
 
-## Ciclo de Vida
+## Credenciales API 
 
-1. Cuando tus usuarios estén listos para completar el proceso de pago, tu aplicación debe crear un `CheckoutSession`.
-2. Redireccionar al usuario a la URL provista, esta URL contiene nuestro Checkout con todas sus funcionalidades listas.
-3. El usuario ingresa los datos requeridos para completar el pago.
-4. El usuario es redireccionado de vuelta al sitio del comercio.
-5. Después de la transacción, una notificación es enviada para que la aplicación conozca el estado del pago.
+Para integrarse con Checkout debes contar con tus credenciales `login` y `secretKey`.
 
-Para utilizar Banchile Pagos Checkout, es necesario realizar una integración de código mediante servicios HTTP, donde tu aplicación o tienda en línea redirigirá a los usuarios a Checkout para que completen el proceso de pago. A continuación, se detallan los pasos necesarios para comenzar la integración.
+- **login:** Identificador del sitio, puede considerarse público pues viaja como dato plano en las peticiones API.
+- **secretKey:** Llave secreta del sitio, debe ser privada, a partir de este dato se generará un nuevo `tranKey` que será enviado en las peticiones.
 
-## Integración
+> [!WARNING]
+> **Estas credenciales son propias de tu sitio y deben ser tratadas de forma segura**. No compartas tus credenciales en áreas de acceso público como Github, código del lado de cliente u otros lugares de fácil acceso para terceros.
 
-En el siguiente diagrama se describe de forma visual y con más detalle el ciclo de vida de una sesión de pagos en Checkout.
+## Objeto Authentication 
 
-![image.png](attachment:c0948130-2d8c-4ec0-8b18-6c79917a4fa7:image.png)
+El parámetro `auth` debe ser enviado en todas la peticiones API y contiene el grupo de propiedades necesarias para verificar la autenticación.
 
-## Consideraciones de Seguridad
+### Propiedades del objeto auth
 
-**Los endpoints de Webcheckout NO deben consumirse directamente desde el navegador** (ej: JavaScript/AJAX). Esto expone credenciales API y datos sensibles a riesgos de:
+#### `auth.login` <span style="color: #8f9190ff; font-weight: 50;">string</span> <span style="color: #ef4444; font-size: 0.75rem; font-weight: 50;">REQUIRED</span>
 
-- **Interceptación de claves** por scripts maliciosos
-- **Exposición de datos** en consola del cliente
-- **Vulnerabilidad a ataques XSS**
+Identificador del sitio
 
-### **Iniciar Checkout**
+#### `auth.tranKey` <span style="color: #8f9190ff; font-weight: 50;">string</span> <span style="color: #ef4444; font-size: 0.75rem; font-weight: 50;">REQUIRED</span>
 
-**Crear una sesión de pago**
+Credencial tranKey generado. A continuación se explica en detalle.
 
-Para aceptar un pago a través de Checkout, es necesario crear una sesión de pago (**Checkout Session**) utilizando el método `API - Crear sesión (CreateRequest)`.
+#### `auth.nonce` <span style="color: #8f9190ff">string</span> <span style="color: #ef4444; font-size: 0.75rem; font-weight: 50;">REQUIRED</span>
 
-Al llamar a este servicio, se obtendrá la URL de proceso (`processUrl`) y el identificador de solicitud (`requestId`).
+Valor aleatorio para cada solicitud codificado en Base64.
 
-**Registro del Pago en Proceso**
+#### `auth.seed` <span style="color: #8f9190ff; font-weight: 50;">string</span> <span style="color: #ef4444; font-size: 0.75rem; font-weight:50;">REQUIRED</span>
 
-En tu sistema, crear un registro que relacione el pago en proceso con el `requestID` proporcionado.
+Fecha actual, la cual se genera en formato ISO 8601.
 
-El estado inicial de todos los pagos es pendiente (`PENDING`).
+---
 
-**Redirección del Usuario**
+**Autenticación de Ejemplo**
 
-El usuario debe ser redireccionado a la URL de proceso (`processUrl`) proporcionada por Banchile Pagos Checkout.
+```json
+{    
+  "auth": {
+    "login":"aabbccdd1234567890aabbccdd123456",
+    "tranKey":"ABC123example456trankey+789abc012def3456ABC=",
+    "nonce":"enQ4dXh3YWhkMWM=",
+    "seed":"2023-06-21T09:56:06-05:00"
+  },
+  ...
+}
+```
 
-**Proceso de Pago o Suscripción**
+## Cómo generar tu autenticación
 
-En la interfaz de Checkout, el usuario completará el proceso de pago o suscripción. Checkout se encargará de recopilar todos los datos necesarios.
+Debes conocer y preparar los siguientes datos:
 
-**Redirección de vuelta al sitio del comercio**
+**login:** Credencial `login` provista al inicar tu integración. Identificador del sitio.
 
-Una vez que el proceso de pago esté completo, el usuario puede ser redirigido de vuelta a la URL de retorno (`returnUrl`) especificada en la solicitud inicial (`CreateRequest`).
+**secretKey**: Credencial `secretKey` provista al iniciar tu integración. Llave secreta del sitio.
 
-En este punto es probable que el proceso de pago haya finalizado. Para conocer el estado del pago debes esperar la notificación o consultar el estado de la sesión.
+**seed:** Se trata de la fecha en la que se generó la autenticación. La fecha debe estar en formato ISO 8601.    
+Ejemplo: `2023-06-21T09:56:06-05:00`
 
-### **Notificación asincrónica**
+**nonce:** Valor arbitrario que identifica a una petición cómo única.   
+Se genera y se utiliza para otras operaciones.   
+Al momento de enviarlo, debe ser codificado en base 64.   
+Ejemplo: `base64('927342197')`
 
-Cuando una sesión tenga un estado final, Banchile Pagos enviará una notificación asincrónica a tu sitio informando la finalización del proceso de pago. Asegúrate de manejar adecuadamente esta notificación para mantener la integridad de los datos.
+**tranKey:** Se genera en cada solicitud de forma programática.   
+Se genera con la siguiente fórmula `Base64(SHA-256(nonce + seed + secretKey))` esta fórmula debe ser traducida según el lenguaje de programación utilizado.
 
-### **Consulta de sesiones**
 
-Se debe consultar las sesiones para poder completar el ciclo de vida.
+<CodeGroup title="Generate authentication">
 
-**Consulta del estado de la sesión**
+```php
+$login = "siteLogin";
+$secretKey = "siteSecretKey";
+$seed = date('c');
+$rawNonce = rand();
 
-Al llegar al sitio del comercio, se debe consultar el estado de la sesión.
+$tranKey = base64_encode(hash('sha256', $rawNonce.$seed.$secretKey, true));
+$nonce = base64_encode($rawNonce);
 
-Esto se puede lograr utilizando el método `API - Consultar sesión (getRequestInformation)`.
+$body = [
+  "auth" => [
+    "login" => $login,
+    "tranKey" => $tranKey,
+    "nonce" => $nonce,
+    "seed" => $seed,
+  ],
+  // ... other params
+];
+```
 
-**Actualización y Reglas de Negocio**
+```js
+const crypto = require('crypto');
 
-Según el estado final del pago obtenido, debes ejecutar las reglas de negocio correspondientes y actualizar la información relacionada con el pago en tu sistema.
+const login = "siteLogin";
+const secretKey = "siteSecretKey";
+const seed = new Date().toISOString();
+const rawNonce = Math.floor(Math.random() * 1000000);
 
-## Estados de Sesión
+const tranKey = Buffer.from(crypto.createHash('sha256').update(rawNonce + seed + secretKey).digest(), 'binary').toString('base64');
+const nonce = Buffer.from(rawNonce.toString()).toString('base64');
 
-Las sesiones pueden atravesar diferentes estados, cada uno con su propio significado y secuencia de cambios. A continuación, presentamos los estados posibles y cómo se relacionan entre sí:
+const body = {
+  auth: {
+    login: login,
+    tranKey: tranKey,
+    nonce: nonce,
+    seed: seed,
+  },
+  // ... other params
+};
+```
 
-**`PENDING` Pendiente:** Se presenta en tres situaciones: en primer lugar, es el estado inicial de la sesión e indica que el proceso está en espera de acciones por parte del usuario; en segundo lugar, cuando hay transacciones rechazadas, permitiendo al usuario la oportunidad de realizar nuevos intentos; y, por ultimo, cuando existe una transacción pendiente de validación lo que indica que la sesión se encuentra en un estado de espera hasta que se confirme y valide la transacción. En resumen, es un estado de espera e indica que el proceso no ha finalizado.
+```python 
+import base64, hashlib, random, datetime
 
-**`APPROVED` Aprobado:** Este estado se presenta cuando las transacciones se han aprobado y el proceso se ha completado con éxito. *Este es un estado final de proceso.*
+login = "siteLogin"
+secret_key = "siteSecretKey"
 
-**`REJECTED` Rechazado:** Este estado se presenta cuando la sesión es cancelada por parte del usuario. También puede ocurrir cuando la sesión llega al tiempo de expiración sin un pago aprobado. *Este es un estado final de proceso.*
+seed = datetime.datetime.now(datetime.timezone.utc).isoformat()
+raw_nonce = random.getrandbits(128).to_bytes(16, byteorder="big")
+nonce = base64.b64encode(raw_nonce).decode("utf-8")
+tran_key = base64.b64encode(hashlib.sha256(raw_nonce + seed.encode() + secret_key.encode()).digest()).decode("utf-8")
+    
+return {
+  "login": login,
+  "tranKey": tran_key,
+  "nonce": nonce,
+  "seed": seed,
+} 
+```
 
-**`APPROVED_PARTIAL` Aprobado Parcial:** Se presenta en sesiones de pago parcial cuando el usuario ha pagado una parte del monto total solicitado pero otra parte aún está pendiente o ha fallado. En este momento el usuario aún puede completar la totalidad del pago con otras transacciones.
+</CodeGroup>
 
-**`PARTIAL_EXPIRED` Parcial Expirado:** Se presenta en sesiones de pago parcial cuando el usuario solo pagó una parte del monto total solicitado y el tiempo disponible para completar el pago ya ha finalizado. En este momento el proceso ya ha finalizado y no se puede completar. *Este es un estado final de proceso.*
+## Posibles errores
 
-### **Estados en sesiones**
+
+Código | Causa
+---------|----------
+ 100 | UsernameToken no proporcionado (Encabezado de la autorización mal formado).
+ 101 | Identificador de sitio no existe ( Login incorrecto o no se encuentra en el ambiente).
+ 102 | 	El hash de TranKey no coincide (Trankey incorrecto o mal formado).
+ 103 | Fecha de la semilla mayor de 5 minutos.
+ 104 | Sitio inactivo.
+ 105| Sitio expirado.
+ 106 | Credenciales expiradas.
+ 107| Mala definición del UsernameToken (No cumple con el encabezado WSSE).
+ 200| Saltar el encabezado de autenticación SOAP.
+ 10001| Contacte a Soporte.
+
+## Errores frecuentes
+
+**Mensaje de error “Autenticación mal formada”:**   
+Se presenta cuando el sistema no detecta que se esté enviando login, tranKey, seed o nonce en la estructura auth enviada, también puede presentarse si se envían estos datos pero de manera incorrecta, es decir sin el parámetro content-type “application/json” de manera que el servidor interpreta la petición como texto en lugar de un arreglo de datos. Puedes validar esto haciendo la petición a la URL https://dnetix.co/p2p/client y capturando la respuesta, es una especie de espejo de la petición que te permitirá comprobar los parámetros y el *body* del mensaje.
+
+**Error conectando al servicio con el mensaje ERROR: javax.net.ssl.SSLHandshakeException: Remote host closed connection during handshake**:   
+Tus servidores requieren TLSv1.2 para recibir la solicitud, debido a la norma PCI. Por favor, revisa el cifrado y el protocolo utilizado para conectar al servidor. Si usas Java, ten presente que solo las versiones después de la 8 tienen soporte completo.
+
+**SoapFault responde con el mensaje "Authentication Failed 103"**:   
+En el proceso de autenticación, Placetopay revisamos el campo Created, este campo debe estar en el tiempo GMT o el tiempo local usando el tiempo de zona. Si obtienes esta respuesta, se debe a que tu tiempo no es preciso con el tiempo real. Nosotros solo permitimos 5 minutos de diferencia entre los tiempos. Puedes usar NTP para mantener la precisión del reloj.
+
+**Dando los mismos valores EXACTOS que en los ejemplos anteriores a la BASE64(SHA256($Nonce + $Created . $secretKey)) estoy obteniendo un password digest diferente.**:   
+Mantén en mente que BASE64 debería ser para el raw output de la SHA256 y de acuerdo con todos los lenguajes de programación este puede ser requerido para configurar esta opción, por ejemplo. En PHP base64_encode(hash('sha256' … , true)) este parámetro retornaría el raw output para el SHA256 algorithm
