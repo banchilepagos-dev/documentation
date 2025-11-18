@@ -7,7 +7,7 @@ order: 7
 
 # Navegadores Compatibles
 
-Web Checkout está diseñado para ofrecer una experiencia segura y estable en las versiones modernas de los navegadores más utilizados a nivel mundial.  {{ className: 'lead' }}
+Web Checkout está diseñado para ofrecer una experiencia segura y estable en las versiones modernas de los navegadores más utilizados a nivel mundial.
 
 Para garantizar la seguridad y brindar la mejor experiencia posible a la mayoría de nuestros clientes, no ofrecemos soporte para navegadores que ya no reciben actualizaciones de seguridad y que son utilizados por solo una pequeña fracción de los usuarios.
 
@@ -23,7 +23,7 @@ En Web Checkout, nos esforzamos por ofrecer la mejor experiencia posible para nu
 
 Estos valores corresponden a la regla Browserslist `> 0.5%, last 2 versions, not dead, not op_mini all, not IE 11` [Ver Más](https://browserslist.dev/?q=PiAwLjUlLCBsYXN0IDIgdmVyc2lvbnMsIG5vdCBkZWFkLCBub3Qgb3BfbWluaSBhbGwsIG5vdCBJRSAxMQ%3D%3D).
 
-> [!NOTE]
+
 > Es probable que algunos navegadores por fuera de la regla se soporten con funcionalidades limitadas, pero no se garantiza su correcto funcionamiento.
 
 <style>
