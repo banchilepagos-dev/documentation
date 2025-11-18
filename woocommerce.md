@@ -2,7 +2,7 @@
 title: 'Woocommerce'
 description: 'Plugins de woocommerce'
 slug: 'plugins-componentes'
-order: 7
+order: 8
 ---
  
  
