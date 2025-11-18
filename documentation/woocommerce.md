@@ -20,36 +20,36 @@ Para llevar a cabo el proceso de integración, se asume que el comercio ya ha in
 
 1. Inicia sesión en tu cuenta de WordPress.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/124/f78c08e0-95be-4b7d-8d0c-a3ac94852cd9/original/imagen_19_.png" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/124/f78c08e0-95be-4b7d-8d0c-a3ac94852cd9/original/imagen_19_.png" alt="Wordpress" >
 
 2. En el menú lateral izquierdo, dirígete a la opción de `Plugins`. Al pasar el cursor sobre ella, se desplegarán dos opciones adicionales. Selecciona la opción `Añadir nuevo`.
  
- <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/123/3d06c3d2-1c52-47ee-9189-5bf16696e9c1/original/imagen_20_.png" alt="Wordpress" class="">
+ <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/123/3d06c3d2-1c52-47ee-9189-5bf16696e9c1/original/imagen_20_.png" alt="Wordpress" >
 
 3. Justo al lado del título `Añadir plugin`, encontrarás un botón en la parte superior que dice `Subir plugin`. Haz clic en el botón.
 
-<img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/122/07146959-7ab3-4bfd-a639-008dd393d07b/original/imagen_21_.png" alt="Wordpress" class="">
+<img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/122/07146959-7ab3-4bfd-a639-008dd393d07b/original/imagen_21_.png" alt="Wordpress" >
 
  
 4. Haz clic en el botón `Buscar` o `Examinar` y busca el archivo del plugin que has descargado. Asegúrate de que el archivo esté comprimido en formato ZIP.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/190/c6b47e12-6543-4bb2-bbf4-52f953838fc8/original/Plugin-Woocommerce-1.webp" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/190/c6b47e12-6543-4bb2-bbf4-52f953838fc8/original/Plugin-Woocommerce-1.webp" alt="Wordpress" >
 
 5. Una vez cargado el archivo ZIP, haz clic en el botón `Instalar ahora`. Ten en cuenta que la instalación del plugin puede tardar unos minutos.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/129/faca8d5c-b7e7-4039-b42f-54d4e0f5908a/original/imagen_14_.png" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/129/faca8d5c-b7e7-4039-b42f-54d4e0f5908a/original/imagen_14_.png" alt="Wordpress" >
 
 6. Al finalizar la instalación, se mostrará un mensaje de confirmación. Asegúrate de que el mensaje indique `Plugin instalado con éxito` antes de proceder a activar y configurar el plugin.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/127/25699862-b4bb-4943-8d29-6168a79c406d/original/imagen_16_.png" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/127/25699862-b4bb-4943-8d29-6168a79c406d/original/imagen_16_.png" alt="Wordpress" >
 
 7. Una vez finalizada la instalación, selecciona la opción `WooCommerce` en el menú lateral izquierdo e ingresa a la opción de `Ajustes`.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/131/7371fe70-4a61-4ce2-b9b3-5fd1cbfe3578/original/imagen_23_.png" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/131/7371fe70-4a61-4ce2-b9b3-5fd1cbfe3578/original/imagen_23_.png" alt="Wordpress" >
 
 8. Selecciona la opción `País/Estado` y establece el país correspondiente a tu tienda.
 
-  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/130/6d1373e0-a2b1-4c38-91bd-21f29e91a87b/original/imagen_2_.jpg" alt="Wordpress" class="">
+  <img class="border-img" src="https://assets.bancochile.cl/uploads/000/089/130/6d1373e0-a2b1-4c38-91bd-21f29e91a87b/original/imagen_2_.jpg" alt="Wordpress" >
 
 9. Luego, selecciona la opción `Plugins instalados` en el menú lateral izquierdo.
    a. Esto te llevará a la lista de todos los plugins instalados en tu sitio.  
