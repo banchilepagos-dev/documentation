@@ -2,7 +2,7 @@
 title: 'Jumpseller'
 description: 'instalación del plugin de BanchilePagos para Jumpseller.'
 slug: 'plugins-jumpseller'
-order: 8
+order: 9
 ---
 
 https://assets.bancochile.cl/uploads/000/089/138/43595641-ff21-4afd-8abc-3d2441fb52cb/original/01_1.png
