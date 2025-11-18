@@ -8,30 +8,74 @@ order: 7
 
   <img src="https://assets.bancochile.cl/uploads/000/089/117/b8befae6-1af0-480b-9e1f-37ea94fd0d23/original/imagen_6_.png" alt="Portada Magento" class="">
 
-
 <div class="title-general">
-<h1> Instrucciones para instalar y configurar WooCommerce Banchile Pagos </h1>
+    <h1>Acepta pagos con Banchile Pagos y Magento</h1>
 </div>
-Para utilizar Banchile Pagos, es necesario contar con una cuenta activa.
-- Descarga nuestro plugin para integrarlo con la plataforma de WordPress.
+En esta guía se explica paso a paso la instalación y configuración del plugin de Banchile Pagos para Magento.
 
-## Antes de comenzar
-Asegúrate de tener:
-- Una cuenta activa de Banchile Pagos (login y SecretKey que te enviamos por correo).
-- Acceso de administrador a tu sitio de WordPress.
-- El archivo del plugin comprimido en formato ZIP.
+Cada parámetro de configuración descrito en esta guía se realizará en un entorno de pruebas con el fin de ilustrar detalladamente su configuración.
 
-## Paso a paso: Instalación del plugin en WordPress (WooCommerce)
+Para utilizar Banchile Pagos es necesario contar con una cuenta activa.  
+Si aún no tienes una, comunícate con nosotros. Si deseas obtener más información, ponte en contacto con nuestro equipo de ventas.
 
-1. Inicia sesión en tu cuenta de WordPress.
-2. En el menú lateral izquierdo, dirígete a la opción **Plugins**. Al pasar el cursor sobre ella, se desplegarán dos opciones adicionales. Selecciona la opción **Añadir nuevo**.
-3. Justo al lado del título **Añadir plugin**, encontrarás un botón en la parte superior que dice **Subir plugin**. Haz clic en el botón.
-4. Haz clic en el botón **Buscar** o **Examinar** y selecciona el archivo ZIP del plugin que has descargado. Asegúrate de que el archivo esté comprimido en formato ZIP.
-5. Una vez seleccionado el archivo ZIP, haz clic en **Instalar ahora**. Ten en cuenta que la instalación del plugin puede tardar unos minutos.
-6. Al finalizar la instalación, se mostrará un mensaje de confirmación. Asegúrate de que el mensaje indique **Plugin instalado con éxito** antes de proceder a activar y configurar el plugin.
-7. Activa el plugin si no se activa automáticamente.
+## Requisitos
+- Tener Magento instalado y funcionando correctamente.
+- Tener una cuenta activa de Banchile Pagos (Login y SecretKey).
 
-## Configuración básica en WooCommerce
+## 1. Inicia sesión en tu cuenta de Magento
+1. Accede al panel de administración de tu tienda Magento.
+2. En el menú lateral izquierdo realiza los pasos siguientes para instalar y configurar el plugin.
+
+## 2. Instalación del plugin
+Ingresa a tu consola e instala el plugin con los comandos proporcionados por Banchile Pagos o por la documentación del plugin.
+
+```bash
+# Ejecuta aquí los comandos de instalación del plugin (proporcionados por Banchile Pagos)
+# Ejemplo (sustituir por los comandos reales):
+# composer require Banchile Pagos/magento-plugin
+# php bin/magento module:enable Banchile Pagos_Module
+# php bin/magento setup:upgrade
+# php bin/magento cache:flush
+```
+
+Una vez que hayas instalado correctamente el plugin en la consola, regresa al navegador donde tienes abierta tu cuenta de Magento.
+
+## 3. Navegar a la configuración en Magento
+1. En el menú lateral izquierdo, selecciona **Stores**.
+2. Dentro de **Stores**, selecciona **Configuration**.
+
+### 3.1 Ajustes generales
+1. En la sección de **Configuration**, en el panel lateral busca el desplegable **General**.
+2. Dentro de **General**, localiza la opción **Default Country** y selecciona el país correspondiente a la tienda.
+
+### 3.2 Métodos de pago
+1. Vuelve a la sección **Configuration** y en el panel lateral abre el desplegable **Sales**.
+2. Selecciona **Payment Methods**.
+3. Si la instalación se realizó correctamente, verás el plugin de Banchile Pagos en la lista de métodos de pago. Haz clic en el botón **Configure** junto al plugin.
+
+## 4. Configuración del plugin (Connection Settings)
+Dentro de la configuración del plugin, busca la sección **Connection Settings** y despliega sus opciones. Las principales opciones a configurar son:
+
+- I am integrated with: Selecciona el proveedor correcto según tu integración.
+- Mode: Selecciona la opción **Producción**.
+- Production Login: Ingresa el valor de **Login** que se te ha enviado por correo electrónico.
+- Production TranKey: Ingresa el valor de **SecretKey** que se te ha enviado por correo electrónico.
+
+El resto de la configuración es personalizable y dependerá de las necesidades específicas de tu comercio.
+
+## 5. Estados de las órdenes en Magento (con el plugin Banchile Pagos)
+Magento puede manejar diferentes estados para una orden. Con el plugin de Banchile Pagos, los estados posibles son:
+
+- Pendiente de pago: La orden está en espera de que se realice el pago. Puede pasar automáticamente a **Completado** o **Procesando** según corresponda.
+- Completado: El pago ha sido realizado correctamente.
+- Procesando: Orden en revisión de la transacción (aplica a pago único como efectivo o transferencia, o a pagos con autorización).
+- Reembolsado: Se ha realizado el reembolso y se actualiza el stock de la tienda con los productos devueltos.
+- Fallido: No se pudo realizar la transacción (fondos insuficientes, datos erróneos u otros motivos).
+
+---
+Notas finales:
+- Realiza pruebas en el entorno de pruebas antes de pasar a producción.
+- Guarda y prueba cada cambio de configuración para asegurar el correcto funcionamiento del flujo de pago.
 
 
 
