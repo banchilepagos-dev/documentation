@@ -27,11 +27,24 @@ Para integrarse con Checkout debes contar con tus credenciales `login` y `secret
 
 El parámetro `auth` debe ser enviado en todas las peticiones API y contiene el grupo de propiedades necesarias para verificar la autenticación.
 
-**Propiedades:**
-- `auth.login` (string): Identificador del sitio
-- `auth.tranKey` (string): Credencial tranKey generado (ver explicación siguiente)
-- `auth.nonce` (string): Valor aleatorio para cada solicitud, codificado en Base64.
-- `auth.seed` (string): Fecha actual, generada en formato ISO 8601.
+
+#### `auth.login` <span style="color: #0033A0; font-weight: 600;">string</span> <span style="color: #0033A0; font-size: 0.75rem; font-weight: 600; background-color: #E5F0FF; padding: 2px 8px; border-radius: 4px;">REQUIRED</span>
+
+Identificador del sitio
+
+#### `auth.tranKey` <span style="color: #0033A0; font-weight: 600;">string</span> <span style="color: #0033A0; font-size: 0.75rem; font-weight: 600; background-color: #E5F0FF; padding: 2px 8px; border-radius: 4px;">REQUIRED</span>
+
+Credencial tranKey generado. A continuación se explica en detalle.
+
+#### `auth.nonce` <span style="color: #0033A0; font-weight: 600;">string</span> <span style="color: #0033A0; font-size: 0.75rem; font-weight: 600; background-color: #E5F0FF; padding: 2px 8px; border-radius: 4px;">REQUIRED</span>
+
+Valor aleatorio para cada solicitud codificado en Base64.
+
+#### `auth.seed` <span style="color: #0033A0; font-weight: 600;">string</span> <span style="color: #0033A0; font-size: 0.75rem; font-weight: 600; background-color: #E5F0FF; padding: 2px 8px; border-radius: 4px;">REQUIRED</span>
+
+Fecha actual, la cual se genera en formato ISO 8601.
+
+---
 
 **Ejemplo de autenticación:**
 
