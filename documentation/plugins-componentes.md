@@ -39,7 +39,6 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 </div>
 </div>
 
-## <!-- ## Librerías
 
 <div class="plugins-grid">
 
@@ -86,7 +85,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
   <img src="https://assets.bancochile.cl/uploads/000/089/117/b8befae6-1af0-480b-9e1f-37ea94fd0d23/original/imagen_6_.png" alt="Portada Magento" class="">
 
 <div class="title-general">
-    <h1>Acepta pagos con Banchile Pagos y Magento</h1>
+    <h3>Acepta pagos con Banchile Pagos y Magento</h3>
 </div>
 En esta guía, se explicará paso a paso la instalación del plugin de Placetopay para Magento.
 
@@ -136,7 +135,7 @@ d. Production TranKey: Ingresa el dato de ‘SecretKey’ que se te ha enviado p
 
 El resto de la configuración es personalizable y dependerá exclusivamente de las necesidades específicas de tu comercio.
 
-## Estados de las órdenes en Magento
+### Estados de las órdenes en Magento
 
 En Magento podemos tener diferentes estados para una orden. A continuación se detallan los estados posibles de la orden con el plugin:
 
@@ -155,7 +154,7 @@ En Magento podemos tener diferentes estados para una orden. A continuación se d
   <img src="https://assets.bancochile.cl/uploads/000/089/206/02795c80-29d5-4119-a75e-f68cdee7ce0a/original/00.png" alt="Portada prestashop" class="">
 
 <div class="title-general">
-    <h1>Acepta pagos con Banchile Pagos y PrestaShop</h1>
+    <h3>Acepta pagos con Banchile Pagos y PrestaShop</h3>
 </div>
 
 En esta guía, se explicará paso a paso la instalación del plugin de Banchile Pagos para PrestaShop. Cada parámetro de configuración descrito en esta guía se realizará en un entorno de pruebas con el fin de ilustrar detalladamente su configuración.
@@ -221,7 +220,7 @@ En Prestashop podemos tener diferentes estados para una orden. A continuación s
  <img src="https://assets.bancochile.cl/uploads/000/089/189/f4fe06a6-f37b-49f9-9873-b58a90dcd02f/original/0.png" alt="Wordpress" class="">
 
 <div class="title-general">
-<h1> Acepta pagos con Banchile Pagos y WooCommerce </h1>
+<h3> Acepta pagos con Banchile Pagos y WooCommerce </h3>
 </div>
 
 Esta guía te proporciona un paso a paso detallado para la instalación del plugin WooCommerce Gateway Banchile Pagos. Cabe destacar que todos los aspectos de esta guía se realizarán en un entorno de pruebas, con el objetivo de ilustrar a fondo su configuración.
@@ -282,7 +281,7 @@ Para llevar a cabo el proceso de integración, se asume que el comercio ya ha in
 
 El resto de la configuración es personalizable y dependerá exclusivamente de las necesidades específicas de tu comercio.
 
-## Estados de las órdenes en WooCommerce
+### Estados de las órdenes en WooCommerce
 
 En WooCommerce podemos tener diferentes estados para una orden. A continuación se detallan los estados posibles de la orden con el plugin:
 
@@ -292,7 +291,7 @@ En WooCommerce podemos tener diferentes estados para una orden. A continuación 
 - **Reembolsado:** realiza el reembolso y actualiza el stock de la tienda con los productos devueltos.
 - **Fallido:** no se pudo realizar la transacción ya sea por fondos insuficientes o por datos erróneos.
 
-## Modo depuración
+### Modo depuración
 
 Dentro de la sección de configuración del componente existen parametrizaciones que solo se visualizan con el Modo depuración activado, dentro de ellas:
 
