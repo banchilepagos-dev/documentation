@@ -9,9 +9,9 @@ order: 7
   <img src="https://assets.bancochile.cl/uploads/000/089/117/b8befae6-1af0-480b-9e1f-37ea94fd0d23/original/imagen_6_.png" alt="Portada Magento" class="">
 
 
-
+<div class="title-general">
 # Instrucciones para instalar y configurar WooCommerce Banchile Pagos
-
+</div>
 Para utilizar Banchile Pagos, es necesario contar con una cuenta activa.
 - Descarga nuestro plugin para integrarlo con la plataforma de WordPress.
 
@@ -48,3 +48,11 @@ https://assets.bancochile.cl/uploads/000/089/114/79c2966e-37b2-4040-a48e-471cb56
 https://assets.bancochile.cl/uploads/000/089/115/7d0f4e75-8185-450e-bc8f-8452092baf7e/original/imagen_8_.png
 https://assets.bancochile.cl/uploads/000/089/116/90404bb4-ecf0-40f3-86a6-96042204acfe/original/imagen_7_.png
 https://assets.bancochile.cl/uploads/000/089/118/95c8bcde-f40c-4e0c-8e85-1b6100b28dc7/original/imagen_1_.jpg
+
+
+<style>
+    .title-general{
+        text-align: center;
+        margin-top: 50px;
+    }
+</style>
