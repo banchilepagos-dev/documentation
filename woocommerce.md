@@ -1,7 +1,7 @@
 ---
 title: 'Woocommerce'
 description: 'Plugins de woocommerce'
-slug: 'plugins-componentes'
+slug: 'plugin-woocommerce'
 order: 8
 ---
  

@@ -1,7 +1,7 @@
 ---
 title: 'Magento'
 description: 'Plugins y componentes para integración con Checkout.'
-slug: 'plugins-componentes'
+slug: 'plugin-magento'
 order: 7
 ---
 
