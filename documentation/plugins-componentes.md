@@ -39,7 +39,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 </div>
 </div>
 
-<!-- 
+
 <div class="plugins-grid">
 
 <div class="plugin-card">
@@ -78,7 +78,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
   <a href="#" class="plugin-link">Ver más →</a>
 </div>
 
-</div>  -->
+</div> -->
 
 ## Magento
 
@@ -227,7 +227,7 @@ Esta guía te proporciona un paso a paso detallado para la instalación del plug
 
 Para llevar a cabo el proceso de integración, se asume que el comercio ya ha instalado previamente el componente WooCommerce en su sitio de WordPress.
 
-### Por favor siga los pasos que siguen a continuación.
+## Por favor siga los pasos que siguen a continuación.
 
 1. Inicia sesión en tu cuenta de WordPress.
 
