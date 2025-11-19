@@ -11,10 +11,10 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 
 <div class="plugins-grid">
 
-<div class="plugin-card">
+<div class="plugin-card" >
   <div class="plugin-header">
     <img src="https://assets.bancochile.cl/uploads/000/088/637/fcb442af-e965-449e-83c8-e5e374d553b1/original/woocommerce.png" alt="WooCommerce" class="plugin-icon">
-    <h3>WooCommerce</h3>
+    <h3 id="woocommerce">WooCommerce</h3>
   </div>
   <p>Plugin para WordPress. Diseñado para tiendas y comercios en línea que usan WordPress.</p>
   <a href="#" class="plugin-link">Ver más →</a>
@@ -39,7 +39,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 </div>
 </div>
 
-
+<!-- 
 <div class="plugins-grid">
 
 <div class="plugin-card">
@@ -78,14 +78,14 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
   <a href="#" class="plugin-link">Ver más →</a>
 </div>
 
-</div> -->
+</div>  -->
 
 ## Magento
 
   <img src="https://assets.bancochile.cl/uploads/000/089/117/b8befae6-1af0-480b-9e1f-37ea94fd0d23/original/imagen_6_.png" alt="Portada Magento" class="">
 
 <div class="title-general">
-    <h3>Acepta pagos con Banchile Pagos y Magento</h3>
+    <h3 id="magento">Acepta pagos con Banchile Pagos y Magento</h3>
 </div>
 En esta guía, se explicará paso a paso la instalación del plugin de Placetopay para Magento.
 
@@ -220,14 +220,14 @@ En Prestashop podemos tener diferentes estados para una orden. A continuación s
  <img src="https://assets.bancochile.cl/uploads/000/089/189/f4fe06a6-f37b-49f9-9873-b58a90dcd02f/original/0.png" alt="Wordpress" class="">
 
 <div class="title-general">
-<h3> Acepta pagos con Banchile Pagos y WooCommerce </h3>
+<h3 id="woocommerce"> Acepta pagos con Banchile Pagos y WooCommerce </h3>
 </div>
 
 Esta guía te proporciona un paso a paso detallado para la instalación del plugin WooCommerce Gateway Banchile Pagos. Cabe destacar que todos los aspectos de esta guía se realizarán en un entorno de pruebas, con el objetivo de ilustrar a fondo su configuración.
 
 Para llevar a cabo el proceso de integración, se asume que el comercio ya ha instalado previamente el componente WooCommerce en su sitio de WordPress.
 
-## Por favor siga los pasos que siguen a continuación.
+### Por favor siga los pasos que siguen a continuación.
 
 1. Inicia sesión en tu cuenta de WordPress.
 

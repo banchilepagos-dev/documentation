@@ -1,7 +1,7 @@
 ---
 title: 'Inicio Rápido'
 description: ''
-slug: 'como-funciona-web-checkout'
+slug: 'inicio-rapido'
 order: 1
 ---
 # **Cómo funciona Checkout**
