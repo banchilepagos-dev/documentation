@@ -14,7 +14,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 <div class="plugin-card" >
   <div class="plugin-header">
     <img src="https://assets.bancochile.cl/uploads/000/088/637/fcb442af-e965-449e-83c8-e5e374d553b1/original/woocommerce.png" alt="WooCommerce" class="plugin-icon">
-    <h3 id="woocommerce">WooCommerce</h3>
+    <h3 id="magento">WooCommerce</h3>
   </div>
   <p>Plugin para WordPress. Diseñado para tiendas y comercios en línea que usan WordPress.</p>
   <a href="#" class="plugin-link">Ver más →</a>
@@ -297,6 +297,17 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 
 - URL de notificación.
 - Ubicación tarea programada.
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+  const hash = window.location.hash.slice(1);
+  if (!hash) return;
+  const target = document.getElementById(hash);
+  if (target) {
+    target.classList.add('destacado-hash');
+    target.scrollIntoView({behavior: 'smooth', block: 'start'});
+  }
+});
 
 <style>
 
