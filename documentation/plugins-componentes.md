@@ -26,7 +26,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
     <h3>Magento</h3>
   </div>
   <p>Plataforma de código abierto para comercio electrónico escrita en PHP.</p>
-  <a href="#magento" class="plugin-link">Ver más →</a>
+  <a href="#documentation#plugins-componentes#magento" class="plugin-link">Ver más →</a>
 </div>
 
 <div class="plugin-card">
