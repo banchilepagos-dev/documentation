@@ -2,6 +2,10 @@
 title: "Plugins y Componentes"
 description: "Plugins y componentes para integración con Checkout."
 slug: "plugins-componentes"
+sections:
+  - magento
+  - prestashop
+  - woocommerce
 order: 6
 ---
 
