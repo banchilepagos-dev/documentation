@@ -80,11 +80,8 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 
 </div>  -->
 
-<div>
-{% include "magento.md" %}
-{% page-ref page="magento.md" %}
+{% include "jumpseller.md" %}
 
-</div>
 
 
 
