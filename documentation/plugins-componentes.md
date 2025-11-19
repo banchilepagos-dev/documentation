@@ -14,7 +14,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 <div class="plugin-card" >
   <div class="plugin-header">
     <img src="https://assets.bancochile.cl/uploads/000/088/637/fcb442af-e965-449e-83c8-e5e374d553b1/original/woocommerce.png" alt="WooCommerce" class="plugin-icon">
-    <h3 id="magento">WooCommerce</h3>
+    <h3>WooCommerce</h3>
   </div>
   <p>Plugin para WordPress. Diseñado para tiendas y comercios en línea que usan WordPress.</p>
   <a href="#" class="plugin-link">Ver más →</a>
@@ -154,7 +154,7 @@ En Magento podemos tener diferentes estados para una orden. A continuación se d
   <img src="https://assets.bancochile.cl/uploads/000/089/206/02795c80-29d5-4119-a75e-f68cdee7ce0a/original/00.png" alt="Portada prestashop" class="">
 
 <div class="title-general">
-    <h3>Acepta pagos con Banchile Pagos y PrestaShop</h3>
+    <h3 id="prestashop">Acepta pagos con Banchile Pagos y PrestaShop</h3>
 </div>
 
 En esta guía, se explicará paso a paso la instalación del plugin de Banchile Pagos para PrestaShop. Cada parámetro de configuración descrito en esta guía se realizará en un entorno de pruebas con el fin de ilustrar detalladamente su configuración.
@@ -299,8 +299,66 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 - Ubicación tarea programada.
 
 
-<style>
+<div class="plugins-list">
+  
+  <a class="plugin-link" data-page="jumpseller" href="/plugins-componentes/jumbselle">jumbselle →</a>
+</div>
 
+
+<script>
+(function(){
+  const container = document.getElementById('plugin-dynamic-container');
+  async function load(path, push=true){
+    const url = path.startsWith('/') ? path : '/plugins-componentes/' + path;
+    const res = await fetch(url);
+    if(!res.ok) { container.innerHTML = '<p>Error cargando contenido.</p>'; return; }
+    const html = await res.text();
+    // Extrae solo el contenido principal (ajusta el selector a tu generador)
+    const tmp = document.createElement('div');
+    tmp.innerHTML = html;
+    const main = tmp.querySelector('main, article, #__content, .content, body') || tmp;
+    // Opcional: toma solo lo que está después del primer h1
+    container.innerHTML = main.innerHTML;
+    if(push) history.pushState({sub:path}, '', url);
+    // Scroll suave al inicio del contenido
+    container.scrollIntoView({behavior:'smooth', block:'start'});
+  }
+  // Interceptar clics
+  document.addEventListener('click', (e)=>{
+    const a = e.target.closest('a.plugin-link[data-page]');
+    if(!a) return;
+    e.preventDefault();
+    load(a.getAttribute('href').replace(location.origin,''));
+  });
+  // Soporta navegación atrás/adelante
+  window.addEventListener('popstate', (e)=>{
+    const sub = e.state?.sub;
+    if(sub) load(sub, false);
+    else container.innerHTML = '';
+  });
+  // Carga inicial si llega directo a sub-página y quieres mostrarla integrada
+  const path = location.pathname.replace(/\/$/,'');
+  const match = path.match(/\/plugins-componentes\/(magento|prestashop|woocommerce)$/);
+  if(match) load(match[0], false);
+})();
+</script>
+
+
+<style>
+#plugin-dynamic-container {
+  margin-top: 2rem;
+  border-top: 1px solid #e2e8f0;
+  padding-top: 1.5rem;
+  min-height: 200px;
+}
+.plugins-list a {
+  display:inline-block;
+  margin:.5rem 1rem .5rem 0;
+  text-decoration:none;
+  font-weight:600;
+  color:#0033A0;
+}
+.plugins-list a:hover { text-decoration:underline; }
 .destacado-hash {
   outline: 3px solid #0033A0;
   padding: 4px 8px;
