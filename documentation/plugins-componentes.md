@@ -311,6 +311,18 @@ document.addEventListener('DOMContentLoaded', () => {
 
 <style>
 
+.destacado-hash {
+  outline: 3px solid #0033A0;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: rgba(0,51,160,.06);
+}
+@media (prefers-color-scheme: dark) {
+  .destacado-hash {
+    background: rgba(96,165,250,.15);
+  }
+}
+
 .title-general{
   text-align: center;
   margin-top: 50px;
