@@ -304,7 +304,7 @@ Dentro de la sección de configuración del componente existen parametrizaciones
   <a class="plugin-link" data-page="jumpseller" href="/plugins-componentes/jumbseller">jumbselle →</a>
 </div>
 
-
+<!-- 
 <script>
 (function(){
   const container = document.getElementById('plugin-dynamic-container');
@@ -341,7 +341,7 @@ Dentro de la sección de configuración del componente existen parametrizaciones
   const match = path.match(/\/plugins-componentes\/(magento|prestashop|woocommerce)$/);
   if(match) load(match[0], false);
 })();
-</script>
+</script> -->
 
 
 <style>
