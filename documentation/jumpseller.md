@@ -1,6 +1,6 @@
 ---
-title: "jumpseller"
-slug: "plugins-componentes#jumpseller"
+title: "magento"
+slug: "plugins-componentes#magento"
 order: 1
 ---
 # Magento
