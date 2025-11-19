@@ -80,7 +80,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 
 </div>  -->
 
-[prestashop]
+[jumpseller]
 
 
 ## Magento
