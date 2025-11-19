@@ -2,10 +2,6 @@
 title: "Plugins y Componentes"
 description: "Plugins y componentes para integración con Checkout."
 slug: "plugins-componentes"
-sections:
-  - magento
-  - prestashop
-  - woocommerce
 order: 6
 ---
 
@@ -311,6 +307,84 @@ Dentro de la sección de configuración del componente existen parametrizaciones
   <a class="plugin-link" data-page="jumpseller" href="/plugins-componentes/jumbseller">jumbselle →</a>
 </div>
 
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  // Procesar URL con múltiples fragmentos
+  function processMultipleFragments() {
+    const fullHash = window.location.hash;
+    
+    if (fullHash && fullHash.includes('#')) {
+      // Extraer todos los fragmentos después de #
+      const fragments = fullHash.split('#').filter(Boolean);
+      const targetId = fragments[fragments.length - 1]; // último fragmento (magento, prestashop, woocommerce)
+      
+      // Buscar elemento con ese ID
+      const targetElement = document.getElementById(targetId);
+      
+      if (targetElement) {
+        // Scroll suave al elemento
+        setTimeout(() => {
+          targetElement.scrollIntoView({ 
+            behavior: 'smooth', 
+            block: 'start' 
+          });
+          
+          // Resaltar elemento
+          targetElement.classList.add('destacado-hash');
+          
+          // Remover resaltado después de 3 segundos
+          setTimeout(() => {
+            targetElement.classList.remove('destacado-hash');
+          }, 3000);
+        }, 100);
+      }
+    }
+  }
+  
+  // Ejecutar al cargar la página
+  processMultipleFragments();
+  
+  // Interceptar clics en enlaces internos para actualizar URL completa
+  document.addEventListener('click', function(e) {
+    const link = e.target.closest('a[href^="#"]');
+    if (!link) return;
+    
+    const href = link.getAttribute('href');
+    if (href === '#') return;
+    
+    const targetId = href.replace('#', '');
+    const targetElement = document.getElementById(targetId);
+    
+    if (targetElement) {
+      e.preventDefault();
+      
+      // Actualizar URL con estructura completa
+      const newUrl = `#documentation#plugins-componentes#${targetId}`;
+      history.pushState(null, '', newUrl);
+      
+      // Scroll suave
+      targetElement.scrollIntoView({ 
+        behavior: 'smooth', 
+        block: 'start' 
+      });
+      
+      // Resaltar
+      targetElement.classList.add('destacado-hash');
+      setTimeout(() => {
+        targetElement.classList.remove('destacado-hash');
+      }, 3000);
+    }
+  });
+  
+  // Manejar navegación atrás/adelante
+  window.addEventListener('popstate', function() {
+    processMultipleFragments();
+  });
+});
+</script>
+
+
 <!-- 
 <script>
 (function(){
@@ -352,6 +426,29 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 
 
 <style>
+
+  .destacado-hash {
+  outline: 3px solid #0033A0 !important;
+  padding: 8px 12px !important;
+  border-radius: 8px !important;
+  background: rgba(0,51,160,.08) !important;
+  scroll-margin-top: 80px !important;
+  transition: all 0.3s ease !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .destacado-hash {
+    background: rgba(96,165,250,.15) !important;
+    outline-color: #60a5fa !important;
+  }
+}
+
+/* Asegurar scroll offset para los IDs */
+#magento,
+#prestashop,
+#woocommerce {
+  scroll-margin-top: 80px;
+}
 #plugin-dynamic-container {
   margin-top: 2rem;
   border-top: 1px solid #e2e8f0;
