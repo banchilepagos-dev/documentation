@@ -308,7 +308,7 @@ document.addEventListener('DOMContentLoaded', () => {
     target.scrollIntoView({behavior: 'smooth', block: 'start'});
   }
 });
-
+</script>
 <style>
 
 .destacado-hash {
