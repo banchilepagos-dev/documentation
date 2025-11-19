@@ -17,7 +17,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
     <h3>WooCommerce</h3>
   </div>
   <p>Plugin para WordPress. Diseñado para tiendas y comercios en línea que usan WordPress.</p>
-  <a href="#" class="plugin-link">Ver más →</a>
+  <a href="#woocommerce" class="plugin-link">Ver más →</a>
 </div>
 
 <div class="plugin-card">
@@ -26,7 +26,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
     <h3>Magento</h3>
   </div>
   <p>Plataforma de código abierto para comercio electrónico escrita en PHP.</p>
-  <a href="#" class="plugin-link">Ver más →</a>
+  <a href="#magento" class="plugin-link">Ver más →</a>
 </div>
 
 <div class="plugin-card">
@@ -35,7 +35,7 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
     <h3>Jumpseller</h3>
   </div>
   <p>Plataforma de comercio electrónico para crear tu tienda en línea.</p>
-  <a href="#" class="plugin-link">Ver más →</a>
+  <a href="#prestashop" class="plugin-link">Ver más →</a>
 </div>
 </div>
 
@@ -301,7 +301,7 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 
 <div class="plugins-list">
   
-  <a class="plugin-link" data-page="jumpseller" href="/plugins-componentes/jumbselle">jumbselle →</a>
+  <a class="plugin-link" data-page="jumpseller" href="/plugins-componentes/jumbseller">jumbselle →</a>
 </div>
 
 
