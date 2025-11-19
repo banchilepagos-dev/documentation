@@ -298,17 +298,7 @@ Dentro de la sección de configuración del componente existen parametrizaciones
 - URL de notificación.
 - Ubicación tarea programada.
 
-<script>
-document.addEventListener('DOMContentLoaded', () => {
-  const hash = window.location.hash.slice(1);
-  if (!hash) return;
-  const target = document.getElementById(hash);
-  if (target) {
-    target.classList.add('destacado-hash');
-    target.scrollIntoView({behavior: 'smooth', block: 'start'});
-  }
-});
-</script>
+
 <style>
 
 .destacado-hash {
