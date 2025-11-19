@@ -83,7 +83,9 @@ Puedes usar nuestros plugins y componentes para integrarte de forma más rápida
 {% include "jumpseller.md" %}
 
 
+{% page-ref page="magento.md" %}
 
+@include: magento.md
 
 ## PrestaShop
 
