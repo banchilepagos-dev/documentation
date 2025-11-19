@@ -4,4 +4,4 @@ slug: "plugins-componentes#magento"
 order: 1
 ---
 
-# Magento
+# magento
